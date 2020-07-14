@@ -1,0 +1,113 @@
+	• Scaling data means,
+		○ transforming the data so that the values fit within some range or scale, such as 0–100 or 0–1. it is practiced to scale data before feeding it into a machine learning algorithm.
+	• Why do we need it?
+		○ scaling process does not affect the algorithm output since every value is scaled in the same way. But it can speed up the training process, as the algorithm only needs to handle numbers <= 1.
+		○ images are represented as a set of RGB values ranging from 0 to 255. the range of the values can be scaled  from 0–255 down to a range of 0–1. 
+		○ Scaling is important depending on what model you are training for the problem.
+		Tree based models are immune to problems related to data scaling or distributions, while logistic regression and SVM are quite sensitive to scale
+		
+		○ but sometimes normalization/scaling is not always applicable,
+		In order to be able to scale or normalize features to a common range like [0,1] you need to know the min/max or mean/stdv (depending on which scaling method you apply) of each feature. Many practical learning problems don't provide you with all the data a-prior, so you simply can't normalize. Such problems require an online learning approach.
+		
+		○ For machine learning models that include coefficients (e.g. regression, logistic regression, etc) the main reason to normalize is numerical stability. Mathematically, if one of your predictor columns is multiplied by 10^6, then the corresponding regression coefficient will get multiplied by 10^{-6} and the results will be the same.
+		From <https://stats.stackexchange.com/questions/189652/is-it-a-good-practice-to-always-scale-normalize-data-for-machine-learning> 
+
+	• 2 approaches to scaling data:
+		○ standardization and 
+		○ normalization.
+	• Standardization can be used in any case most of the time
+	• when data does not follow Gaussian distribution use Normalization
+	
+
+	
+
+	
+
+
+Standardization:
+
+	• Standardization rescales data so that it has a mean of 0 and a standard deviation of 1.
+	• target: mean =0 , std = 1
+	• Formula: (𝑥 − 𝜇)/𝜎
+	• Example 1:
+	
+	Standardize the following dataset:
+	50  
+100  
+150  
+	here, mean = 100, and standard deviation = 50.
+	Let's try standardizing each of these data points. The calculations are:
+	(50 − 100)/50 = -50/50 = -1
+(100 − 100)/50 = 0/50 = 0
+(150 − 100)/50 = 50/50 = 1
+
+	Thus, our transformed/scaled data points are:
+	-1  
+ 0  
+ 1
+	Again, the result of the standardization is that our data distribution now has a mean of 0 and a standard deviation of 1.
+	
+	• Example: 2
+	
+
+	
+
+Normalization:
+	• Normalization rescales the data into the range [0, 1].
+	• Target: 0-1 range
+	• The formula for this is:   (𝑥 −𝑥𝑚𝑖𝑛)/(𝑥𝑚𝑎𝑥 −𝑥𝑚𝑖𝑛)
+	• Example: 1
+	Let's try working through an example with those same three data points:
+	50  
+100  
+150  
+	here, 𝑥𝑚𝑖𝑛 = 50, 𝑥𝑚𝑎𝑥 = 150 and  𝑥𝑚𝑎𝑥 −𝑥𝑚𝑖𝑛 = 150 − 50 = 100.
+	Plugging everything into the formula, we get:
+	(50 − 50)/100 = 0/100 = 0
+(100 − 50)/100 = 50/100 = 0.5
+(150 − 50)/100 = 100/100 = 1
+
+	Thus, our transformed data points are:
+	0
+0.5  
+1
+	Again, the goal was to rescale our data into values ranging from 0 to 1—and as you can see, that's exactly what the formula did.
+	
+	• Example: 2
+	
+	
+NORMALIZATION VS STANDARDIZATION
+• Standardization can be used in any case most of the time
+• when data does not follow Gaussian distribution use Normalization
+
+Normalization is good to use when you know that the distribution of your data does not follow a Gaussian distribution. This can be useful in algorithms that do not assume any distribution of the data like K-Nearest Neighbors and Neural Networks.
+
+Standardization, on the other hand, can be helpful in cases where the data follows a Gaussian distribution. However, this does not have to be necessarily true. Also, unlike normalization, standardization does not have a bounding range. So, even if you have outliers in your data, they will not be affected by standardization.
+
+
+Some times when normalizing/Scaling is good:
+1) Several algorithms, in particular SVMs come to mind, can sometimes converge far faster on normalized data (although why, precisely, I can't recall).
+2) When your model is sensitive to magnitude, and the units of two different features are different, and arbitrary. This is like the case you suggest, in which something gets more influence than it should.
+But of course -- not all algorithms are sensitive to magnitude in the way you suggest. Linear regression coefficients will be identical if you do, or don't, scale your data, because it's looking at proportional relationships between them.
+
+Some times when normalizing/sacling is bad:
+1) When you want to interpret your coefficients, and they don't normalize well. Regression on something like dollars gives you a meaningful outcome. Regression on proportion-of-maximum-dollars-in-sample might not.
+2) When, in fact, the units on your features are meaningful, and distance does make a difference! Back to SVMs -- if you're trying to find a max-margin classifier, then the units that go into that 'max' matter. Scaling features for clustering algorithms can substantially change the outcome. Imagine four clusters around the origin, each one in a different quadrant, all nicely scaled. Now, imagine the y-axis being stretched to ten times the length of the the x-axis. instead of four little quadrant-clusters, you're going to get the long squashed baguette of data chopped into four pieces along its length! (And, the important part is, you might prefer either of these!)
+In I'm sure unsatisfying summary, the most general answer is that you need to ask yourself seriously what makes sense with the data, and model, you're using.
+
+From <https://stats.stackexchange.com/questions/189652/is-it-a-good-practice-to-always-scale-normalize-data-for-machine-learning> 
+
+
+
+
+
+Short Note on standard deviation:
+	• tells how measurements for a group are spread out from the mean
+	• A low standard deviation means that most of the numbers are close to the average and higher means the opposite.
+	• consider this 2 sets, {15, 15, 15, 14, 16} and {2, 7, 14, 22, 30}, though both of them have same mean value , 2nd set has higher standard deviation, thus it is more spread out.
+	• you can find standard deviation of a data set with the following formula:
+
+	
+			
+Varience Formula
+	
