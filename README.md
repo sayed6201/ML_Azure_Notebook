@@ -22,7 +22,6 @@
 			§ Underfitting is called "Simplifying assumption" (Model is HIGHLY BIASED towards its assumption). your model will think linear hyperplane is good enough to classify your data which may not be true. consider you are shown a picture of cat 1000 times, Now you are blindfolded, No matter Whatever you are shown the 1001th time, probability that you will say cat is very high(You are HIGHLY BIASED that the next picture is also gonna be a cat). Its because you believe its gonna be a cat anyway. Here you are simplifying assumptions
 			
 				
-	
 
 	• Prediction Error
 		○ prediction error = Bias error + variance + error + irreducible error
